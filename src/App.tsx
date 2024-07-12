@@ -51,7 +51,7 @@ const App = () => {
           <h3>
             {gameResult === "success"
               ? "Congratulations you guessed the word"
-              : "Oops! please try again."}
+              : `Oops! The word was ${soltion}, please try again.`}
           </h3>
         </div>
       </Modal>
