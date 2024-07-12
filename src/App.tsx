@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="app">
       <div className="header">
-        <div className="guessTitle">Guess the Word !!!</div>
+        <div className="guessTitle">Guess the Word!</div>
         <button onClick={restartGame}>Restart</button>
       </div>
       <GameBoard
@@ -38,11 +38,11 @@ const App = () => {
         </div>
         <div className="legendBox">
           <div className="legend partialCorrect"></div>
-          <span>Indicates letter is in soltion but in wrong location</span>
+          <span>Indicates correct letter but wrong location</span>
         </div>
         <div className="legendBox">
           <div className="legend inCorrect"></div>
-          <span>Indicates letter does not exist in soltion</span>
+          <span>Indicates letter does not exist in solution</span>
         </div>
       </div>
 
