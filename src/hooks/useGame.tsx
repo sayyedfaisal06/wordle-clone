@@ -4,11 +4,22 @@ const intitalGuess = ["", "", "", "", ""];
 
 const START_CHARACTER_INDEX = 65;
 const END_CHARACTER_INDEX = 90;
+
+const generateHint = (solution: string) => {
+  let hint = "_____";
+  const randomNum = Math.floor(Math.random() * 4) + 1;
+  let hintArray = hint.split("");
+  hintArray[randomNum] = solution[randomNum];
+  hint = hintArray.join("");
+  return hint;
+};
+
 const useGame = () => {
   const [soltion, setSoltion] = useState("");
   const [guesses, setGuesses] = useState(intitalGuess);
   const [currentInputIndex, setCurrentInputIndex] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
+  const [hint, setHint] = useState(generateHint(soltion));
 
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameResult, setGameResult] = useState<"failed" | "success" | "">("");
@@ -32,7 +43,7 @@ const useGame = () => {
           setCurrentGuess("");
         }
 
-        if (currentInputIndex === 4) {
+        if (currentInputIndex > 4) {
           setIsGameOver(true);
           setGameResult("failed");
         }
@@ -57,8 +68,10 @@ const useGame = () => {
     setGuesses(intitalGuess);
     setCurrentGuess("");
     setIsGameOver(false);
-    setSoltion(mockWords[Math.floor(Math.random() * mockWords.length)]);
+    const newSolution = mockWords[Math.floor(Math.random() * mockWords.length)];
+    setSoltion(newSolution);
     setGameResult("");
+    setHint(generateHint(newSolution));
   };
 
   return {
@@ -71,6 +84,8 @@ const useGame = () => {
     isGameOver,
     gameResult,
     restartGame,
+    generateHint,
+    hint,
   };
 };
 

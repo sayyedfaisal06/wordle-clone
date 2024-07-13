@@ -14,6 +14,7 @@ const App = () => {
     gameResult,
     isGameOver,
     restartGame,
+    hint,
   } = useGame();
 
   return (
@@ -21,6 +22,9 @@ const App = () => {
       <div className="header">
         <div className="guessTitle">Guess the Word!</div>
         <button onClick={restartGame}>Restart</button>
+      </div>
+      <div className="hint">
+        <span>Hint -</span> <span className="hintText">{hint}</span>
       </div>
       <GameBoard
         guesses={guesses}

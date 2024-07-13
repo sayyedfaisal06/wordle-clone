@@ -22,9 +22,22 @@
 }
 
 .guessTitle {
-  margin-bottom: 2rem;
   font-size: 28px;
   text-align: center;
+  margin-bottom: 1rem;
+}
+
+.hint {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.hintText {
+  font-size: 2rem;
+  letter-spacing: 10px;
 }
 
 .gameRow {
