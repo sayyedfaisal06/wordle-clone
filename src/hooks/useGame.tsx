@@ -43,7 +43,7 @@ const useGame = () => {
           setCurrentGuess("");
         }
 
-        if (currentInputIndex > 4) {
+        if (currentInputIndex === 4 && currentGuess.length === 5) {
           setIsGameOver(true);
           setGameResult("failed");
         }
