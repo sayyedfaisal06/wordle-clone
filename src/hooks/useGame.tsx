@@ -31,7 +31,11 @@ const useGame = () => {
   const onChangeHandler = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === "Backspace") {
-        setCurrentGuess((prev) => prev.slice(0, -1));
+        if (event.ctrlKey) {
+          setCurrentGuess("");
+        } else {
+          setCurrentGuess((prev) => prev.slice(0, -1));
+        }
       } else if (event.key === "Enter") {
         if (currentGuess.length === 5 && currentInputIndex < 5) {
           setGuesses((prev) => {
@@ -50,7 +54,8 @@ const useGame = () => {
       } else if (
         currentGuess.length < 5 &&
         START_CHARACTER_INDEX <= event.keyCode &&
-        event.keyCode <= END_CHARACTER_INDEX
+        event.keyCode <= END_CHARACTER_INDEX &&
+        !event.ctrlKey
       ) {
         setCurrentGuess((prev) => prev + event.key);
       }
