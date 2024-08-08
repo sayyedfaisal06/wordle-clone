@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { mockWords } from "../data";
 const intitalGuess = ["", "", "", "", ""];
 
@@ -8,7 +8,7 @@ const END_CHARACTER_INDEX = 90;
 const generateHint = (solution: string) => {
   let hint = "_____";
   const randomNum = Math.floor(Math.random() * 4) + 1;
-  let hintArray = hint.split("");
+  const hintArray = hint.split("");
   hintArray[randomNum] = solution[randomNum];
   hint = hintArray.join("");
   return hint;
@@ -20,6 +20,7 @@ const useGame = () => {
   const [currentInputIndex, setCurrentInputIndex] = useState(0);
   const [currentGuess, setCurrentGuess] = useState("");
   const [hint, setHint] = useState(generateHint(soltion));
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameResult, setGameResult] = useState<"failed" | "success" | "">("");
@@ -77,6 +78,7 @@ const useGame = () => {
     setSoltion(newSolution);
     setGameResult("");
     setHint(generateHint(newSolution));
+    buttonRef?.current?.blur();
   };
 
   return {
@@ -91,6 +93,7 @@ const useGame = () => {
     restartGame,
     generateHint,
     hint,
+    buttonRef,
   };
 };
 
